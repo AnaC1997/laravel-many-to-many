@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,6 +24,8 @@ class ProjectController extends Controller
             "dataCreation"=> "required|min:5|max:100",
             "language"=> "required|min:3|max:200",
             "type_id"=> "nullable",
+            
+
             ])->validate();
 
             return $validated;
@@ -30,7 +33,8 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        return view('admin.projects.index', compact('projects'));
+        $technologies = Technology::all();
+        return view('admin.projects.index', compact('projects', 'technologies'));
     }
 
     /**
@@ -39,7 +43,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -71,7 +76,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     { 
         $types = Type::all();
-        return view('admin.projects.edit', compact('project','types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project','types', 'technologies'));
     }
 
     /**

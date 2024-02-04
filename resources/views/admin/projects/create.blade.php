@@ -58,7 +58,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="type_id" class="form-label">seleziona una categoria</label>
+                    <label for="type_id" class="form-label">Seleziona una categoria</label>
                     <select name="type_id" id="type_id" class="form-select">
                         <option selected value=" "> </option>
                         @foreach ($types as $type)
@@ -66,6 +66,16 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="mb-3">
+                    <label for="technologies" class="form-label">Seleziona le tecgnologie associate</label>
+                    <select multiple name="technologies[]" id="technologies" class="form-select">
+                        <option selected value="">seleziona almeno una tecnologia</option>
+                        @foreach ($technologies as $technology)
+                            <option value="{{ $technology->id }}">{{ $technology->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Inserisci</button>
             </form>
         </div>
